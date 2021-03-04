@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  poutine:
+    build: ./poutine .
+    ports: 
+      - "3000:3000"
+    volumes:
+      - "/c/Users/Dane/Desktop/Github Projects/react/vend/poutine:/app"
+    container_name: poutine
+  plantain:
+    build: "./plantain ."
+    ports: 
+      - "3070:3070"
+    volumes:
+      - "/c/Users/Dane/Desktop/Github Projects/react/vend/plantain:/app"
+    container_name: plantain
+  database:
+    image: "postgres:latest"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+    container_name: venddb
