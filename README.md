@@ -20,7 +20,7 @@ Probably the most painless way to get up and running with this is with docker.
 
 ### Docker setup
 
-// instructions here
+Using docker compose just run `docker-compose up`
 
 ### Setup without docker
 

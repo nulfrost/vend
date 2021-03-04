@@ -1,18 +1,22 @@
 version: "3.9"
 services:
   poutine:
-    build: ./poutine .
-    ports: 
+    build:
+      context: ./poutine
+      dockerfile: Dockerfile
+    ports:
       - "3000:3000"
     volumes:
-      - "/c/Users/Dane/Desktop/Github Projects/react/vend/poutine:/app"
+      - ./poutine:/app
     container_name: poutine
   plantain:
-    build: "./plantain ."
-    ports: 
+    build:
+      context: ./plantain
+      dockerfile: Dockerfile
+    ports:
       - "3070:3070"
     volumes:
-      - "/c/Users/Dane/Desktop/Github Projects/react/vend/plantain:/app"
+      - ./plantain:/app
     container_name: plantain
   database:
     image: "postgres:latest"

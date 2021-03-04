@@ -1,3 +1,3 @@
-const IndexPage = () => <div>hello world</div>;
+const IndexPage = () => <div>hello worl</div>;
 
 export default IndexPage;
