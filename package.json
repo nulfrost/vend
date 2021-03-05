@@ -5,6 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "migrate": "npx prisma migrate dev --preview-feature",
     "type-check": "tsc"
   },
   "dependencies": {
