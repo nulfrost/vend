@@ -1,7 +1,7 @@
 import React from "react";
 
 type TextProps = {
-  as: string;
+  as: keyof React.ReactHTML;
   size:
     | "xs"
     | "small"
