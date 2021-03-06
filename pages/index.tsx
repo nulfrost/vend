@@ -1,7 +1,14 @@
-import {Text} from "../components/shared/Typography"
+import { Text } from "../components/shared/Typography";
 
 const IndexPage = () => (
-    <Text size="heading-4">This is a test</Text>
-)
+  <>
+    <Text as="small" size="base">
+      This is a test
+    </Text>
+    <Text as="h2" size="heading-3">
+      This is a heading
+    </Text>
+  </>
+);
 
 export default IndexPage;

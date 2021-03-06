@@ -1,6 +1,7 @@
-import tw, { styled } from "twin.macro";
+import React from "react";
 
 type TextProps = {
+  as: string;
   size:
     | "xs"
     | "small"
@@ -10,6 +11,13 @@ type TextProps = {
     | "heading-3"
     | "heading-4"
     | "heading-5";
+  children: React.ReactChild;
 };
 
-export const Text = styled.p(({ size = "base" }) => [tw`text-${size}`]);
+export function Text({ as, size = "base", children, ...props }: TextProps) {
+  return React.createElement(
+    as,
+    { className: `text-${size}`, ...props },
+    children
+  );
+}
