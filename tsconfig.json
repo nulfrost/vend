@@ -15,9 +15,10 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "target": "esnext"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "babel-plugin-macros.config.js", "pages/_document.tsx"],
+  "files": ["twin.d.ts"]
 }
