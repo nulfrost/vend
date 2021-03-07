@@ -8,7 +8,7 @@ export default function Navbar() {
       </Link>
       <ul className="flex space-x-3">
         <li>
-          <Link href="/listings">
+          <Link href="/">
             <a className="duration-150 opacity-50 hover:opacity-100 hover:text-primary-500">
               Listings
             </a>

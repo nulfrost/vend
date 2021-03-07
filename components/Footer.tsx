@@ -8,7 +8,7 @@ export default function Footer() {
       </Link>
       <ul className="flex space-x-3 text-white">
         <li>
-          <Link href="/listings">
+          <Link href="/">
             <a>Listings</a>
           </Link>
         </li>

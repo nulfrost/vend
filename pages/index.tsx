@@ -1,11 +1,5 @@
-import Navbar from "~/components/Navbar";
-import Footer from "~/components/Footer";
+import Layout from "~/components/Layout";
 
-const IndexPage = () => (
-  <div>
-    <Navbar />
-    <Footer />
-  </div>
-);
+const IndexPage = () => <Layout title="Listings">hello</Layout>;
 
 export default IndexPage;

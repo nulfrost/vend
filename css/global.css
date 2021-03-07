@@ -7,3 +7,9 @@
 body {
   font-family: "Rubik", sans-serif;
 }
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
