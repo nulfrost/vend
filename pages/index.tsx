@@ -1,3 +1,9 @@
-const IndexPage = () => <div>meh</div>;
+import Navbar from "~/components/Navbar";
+
+const IndexPage = () => (
+  <div>
+    <Navbar />
+  </div>
+);
 
 export default IndexPage;
