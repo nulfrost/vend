@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/components/*": ["components/*"]
+    },
     "allowJs": true,
     "alwaysStrict": false,
     "esModuleInterop": true,
@@ -19,10 +23,5 @@
     "target": "esnext"
   },
   "exclude": ["node_modules"],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "babel-plugin-macros.config.js",
-    "pages/_document.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"]
 }
