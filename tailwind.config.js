@@ -26,6 +26,10 @@ module.exports = {
       "heading-4": "2.43rem",
       "heading-5": "3.06rem",
     },
+    maxWidth: {
+      "8xl": "88rem",
+      "9xl": "96rem",
+    },
   },
   variants: {
     extend: {},
