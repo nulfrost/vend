@@ -15,20 +15,19 @@ module.exports = {
         "primary-800": "#0F1F3E",
         "primary-900": "#050A15",
       },
-    },
-    fontSize: {
-      "extra-small": "0.625rem",
-      small: "0.75rem",
-      base: "1rem",
-      "heading-1": "1.25rem",
-      "heading-2": "1.56rem",
-      "heading-3": "1.93rem",
-      "heading-4": "2.43rem",
-      "heading-5": "3.06rem",
-    },
-    maxWidth: {
-      "8xl": "88rem",
-      "9xl": "96rem",
+      fontSize: {
+        "extra-small": "0.625rem",
+        small: "0.75rem",
+        base: "1rem",
+        "heading-1": "1.25rem",
+        "heading-2": "1.56rem",
+        "heading-3": "1.93rem",
+        "heading-4": "2.43rem",
+        "heading-5": "3.06rem",
+      },
+      maxWidth: {
+        "8xl": "88rem",
+      },
     },
   },
   variants: {

@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <nav className="py-6 bg-primary-50">
-      <div className="flex items-center justify-between mx-auto max-w-9xl">
+      <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
         <Link href="/">
           <a className="font-bold text-heading-2 text-primary-500">Vend</a>
         </Link>
@@ -59,7 +59,7 @@ export default function Navbar() {
                     <li>
                       <Link href="/create">
                         <a className="block w-full px-2 py-1 duration-150 rounded opacity-50 hover:opacity-100 hover:text-primary-500 hover:bg-primary-50">
-                          Create
+                          Post Ad
                         </a>
                       </Link>
                     </li>

@@ -3,7 +3,7 @@ import Layout from "~/components/Layout";
 export default function About() {
   return (
     <Layout title="About">
-      <div className="flex flex-col items-center px-5 mt-11 md:mt-36">
+      <div className="flex flex-col items-center mt-11 md:mt-36">
         <h1 className="font-semibold text-heading-3 text-primary-500">About</h1>
         <p className="max-w-5xl leading-relaxed">
           Vend is an online buying / selling platform I made to try new
