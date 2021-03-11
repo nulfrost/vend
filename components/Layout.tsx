@@ -9,7 +9,7 @@ type LayoutProps = {
 
 export default function Layout({ title, children }: LayoutProps) {
   useEffect(() => {
-    document.title = title;
+    document.title = `Vend | ${title}`;
   }, []);
 
   return (

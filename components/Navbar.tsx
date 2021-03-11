@@ -29,7 +29,7 @@ export default function Navbar() {
               </a>
             </Link>
           </li>
-          {!session?.user ? (
+          {!session ? (
             <>
               {" "}
               <li>
