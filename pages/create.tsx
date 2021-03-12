@@ -1,13 +1,40 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Layout from "~/components/Layout";
 import Input from "~/components/shared/Input";
 import Label from "~/components/shared/Label";
 import Textarea from "~/components/shared/Textarea";
+import { useDropzone } from "react-dropzone";
 
 export default function Create() {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
 
-  console.log(image);
+  const onDrop = useCallback((acceptedFiles) => {
+    setImages(
+      acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      )
+    );
+  }, []);
+
+  console.log(images);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    // multiple: true,
+    // maxFiles: 3,
+    // noDrag: true,
+  });
+
+  useEffect(
+    () => () => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      images && images.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [images]
+  );
 
   return (
     <Layout title="Post New Ad">
@@ -24,32 +51,41 @@ export default function Create() {
               placeholder="A clever title to catch the buyers eye"
             />
           </Label>
-          <Label
-            htmlFor="images"
-            className="max-w-md col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max"
+          <fieldset
+            className="flex flex-col gap-3"
+            onClick={(e) => console.log(e)}
           >
-            Upload Images
-            <Input
-              type="file"
+            <label
+              htmlFor="images"
+              onClick={(e) => console.log(e)}
+              {...getRootProps({
+                className:
+                  "max-w-md col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max",
+              })}
+            >
+              {images && images.length > 0
+                ? `${images.length} image(s) selected`
+                : "Upload Images"}
+            </label>
+            <input
               name="images"
               id="images"
+              {...getInputProps()}
               className="absolute mt-5 overflow-hidden opacity-0"
               style={{ zIndex: -1, width: 0.1, height: 0.1 }}
-              multiple
-              required
-              onChange={(e) =>
-                setImage(
-                  Array.from(e.target.files).map((image) =>
-                    URL.createObjectURL(image)
-                  )
-                )
-              }
+              onClick={(e) => e.stopPropagation()}
             />
-          </Label>
+            <small className="opacity-50">
+              A maximum of 3 images may be uploaded
+            </small>
+          </fieldset>
           <div className="flex flex-col col-span-2 gap-3 lg:flex-row">
-            {image &&
-              image.map((image) => <img src={image} className="w-64 " />)}
+            {images &&
+              images.map(({ preview, lastModified }) => (
+                <img src={preview} className="w-64 " key={lastModified} />
+              ))}
           </div>
+
           <Label htmlFor="description" className="col-span-2">
             Description
             <Textarea
@@ -72,6 +108,9 @@ export default function Create() {
                 max={1000000}
                 placeholder="$100"
               />
+              <small className="opacity-50">
+                Prices may not exceed $1,000,000
+              </small>
             </Label>
             <Label htmlFor="address">
               Address
