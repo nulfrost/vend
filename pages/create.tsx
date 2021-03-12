@@ -25,6 +25,7 @@ export default function Create() {
     maxFiles: 3,
     noDrag: true,
     disabled: false,
+    noDragEventsBubbling: true,
   });
 
   useEffect(
@@ -51,8 +52,7 @@ export default function Create() {
             />
           </Label>
           <fieldset className="flex flex-col gap-3">
-            <div
-              role="label"
+            <label
               {...getRootProps({
                 className:
                   "max-w-md col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max",
@@ -61,7 +61,7 @@ export default function Create() {
               {images && images.length > 0
                 ? `${images.length} image(s) selected`
                 : "Upload Images"}
-            </div>
+            </label>
             <input
               name="images"
               id="images"
