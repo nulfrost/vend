@@ -18,14 +18,13 @@ export default function Create() {
     );
   }, []);
 
-  console.log(images);
-
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
-    // multiple: true,
-    // maxFiles: 3,
-    // noDrag: true,
+    multiple: true,
+    maxFiles: 3,
+    noDrag: true,
+    disabled: false,
   });
 
   useEffect(
@@ -51,13 +50,9 @@ export default function Create() {
               placeholder="A clever title to catch the buyers eye"
             />
           </Label>
-          <fieldset
-            className="flex flex-col gap-3"
-            onClick={(e) => console.log(e)}
-          >
-            <label
-              htmlFor="images"
-              onClick={(e) => console.log(e)}
+          <fieldset className="flex flex-col gap-3">
+            <div
+              role="label"
               {...getRootProps({
                 className:
                   "max-w-md col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max",
@@ -66,14 +61,13 @@ export default function Create() {
               {images && images.length > 0
                 ? `${images.length} image(s) selected`
                 : "Upload Images"}
-            </label>
+            </div>
             <input
               name="images"
               id="images"
               {...getInputProps()}
               className="absolute mt-5 overflow-hidden opacity-0"
               style={{ zIndex: -1, width: 0.1, height: 0.1 }}
-              onClick={(e) => e.stopPropagation()}
             />
             <small className="opacity-50">
               A maximum of 3 images may be uploaded
@@ -82,7 +76,11 @@ export default function Create() {
           <div className="flex flex-col col-span-2 gap-3 lg:flex-row">
             {images &&
               images.map(({ preview, lastModified }) => (
-                <img src={preview} className="w-64 " key={lastModified} />
+                <img
+                  src={preview}
+                  className="w-64 rounded-md"
+                  key={lastModified}
+                />
               ))}
           </div>
 

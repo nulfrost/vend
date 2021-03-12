@@ -9,7 +9,7 @@ export default function Navbar() {
   const [dropdown, setShowDropdown] = useState(false);
 
   return (
-    <nav className="py-6 bg-primary-50">
+    <nav className="px-5 py-6 bg-primary-50">
       <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
         <Link href="/">
           <a className="font-bold text-heading-2 text-primary-500">Vend</a>
