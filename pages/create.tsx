@@ -7,8 +7,11 @@ import { useDropzone } from "react-dropzone";
 
 export default function Create() {
   const [images, setImages] = useState(null);
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
+    const uploadURL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/upload`;
+
     setImages(
       acceptedFiles.map((file) =>
         Object.assign(file, {
@@ -16,9 +19,28 @@ export default function Create() {
         })
       )
     );
+
+    acceptedFiles.forEach(async (file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+
+      const response = await fetch(uploadURL, {
+        method: "POST",
+        body: formData,
+      });
+      const image = await response.json();
+
+      setUploadedImages((prevState) => [...prevState, image]);
+    });
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  console.log(uploadedImages);
+
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     onDrop,
     accept: "image/*",
     multiple: true,
@@ -36,9 +58,11 @@ export default function Create() {
     [images]
   );
 
+  const fileUploadErrors = fileRejections[0]?.errors[0]?.message;
+
   return (
     <Layout title="Post New Ad">
-      <div className="px-5 mx-auto pb-11 mt-11 md:mt-36 max-w-screen-2xl">
+      <div className="px-5 mx-auto pb-11 mt-11 md:mt-36 md:pb-36 max-w-screen-2xl">
         <form className="grid grid-cols-2 gap-10">
           <Label htmlFor="title" className="col-span-2">
             Post title
@@ -55,7 +79,7 @@ export default function Create() {
             <label
               {...getRootProps({
                 className:
-                  "max-w-md col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max",
+                  "col-span-2 px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max",
               })}
             >
               {images && images.length > 0
@@ -72,6 +96,7 @@ export default function Create() {
             <small className="opacity-50">
               A maximum of 3 images may be uploaded
             </small>
+            <p className="text-sm text-red-500 uppercase">{fileUploadErrors}</p>
           </fieldset>
           <div className="flex flex-col col-span-2 gap-3 lg:flex-row">
             {images &&
@@ -132,6 +157,9 @@ export default function Create() {
               />
             </Label>
           </fieldset>
+          <button className="px-5 py-4 text-white duration-150 rounded-md cursor-pointer bg-primary-500 hover:bg-primary-400 w-max">
+            Create Post
+          </button>
         </form>
       </div>
     </Layout>
