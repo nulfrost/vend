@@ -1,5 +1,4 @@
-import Layout from "~/components/Layout";
 
-const IndexPage = () => <Layout title="Listings">weeeeeeeeeeeeeeeeeee</Layout>;
+const Index = () => <div>hello world</div>
 
-export default IndexPage;
+export default Index
